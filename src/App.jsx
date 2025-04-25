@@ -60,6 +60,8 @@ const App = () => {
   }, [choiceOne, choiceTwo])
 
   console.log(cards);
+  const allMatched = cards.length > 0 && cards.every(card => card.matched);
+
 
   // reset choices and increase turn
   const resetTurn = () => {
@@ -76,6 +78,15 @@ const App = () => {
     <div className='App' >
       <h1>Magic Match</h1>
       <button onClick={shuffleCards}>New Game</button>
+
+      
+    {allMatched && (
+      <div className="victory-message">
+        <h2>🎉 All cards matched!</h2>
+        <button onClick={shuffleCards}>Play Again</button>
+      </div>
+    )}
+    
       <div className="card-grid">
         {
           cards.map(card => (
@@ -89,7 +100,7 @@ const App = () => {
           ))
         }
       </div>
-      <p>Turns:{turns}</p>
+      <p>Turns: {turns}</p>
     </div>
   )
 }
